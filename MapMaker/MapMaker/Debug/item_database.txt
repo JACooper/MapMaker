@@ -1,0 +1,98 @@
+#0							$ Index
+1							$ Item type == armor
+Adamantine Heavy Plate		$ Item name
+A fine set of plate mail. Mobility suffers slightly, though speed is mostly unhindered thanks to the design and materials used.
+9:-0.08						$ -8% dodge
+3							$ Heavy armor
+5							$ Defense modifier
+
+#1
+2							$ Item type == Helm
+Adamantine Heavy Helm
+A great adamantine helm. It protects the wearer's head far better than any alternative, though it can restrict sight in the heat of battle.
+7:-0.04						$ -4% accuracy
+3							$ Heavy armor
+3							$ Defense modifier
+
+#2
+1
+Adamantine Half Plate
+Plate armoring over unjointed areas with a heavy half plate covering the upper torso and lames protecting the abdominals, all over a heavy mail hauberk. Marginally more maneuverable than full plate, this armor still provides excellent protection.
+9:-0.04						$ -4% dodge
+2							$ Medium armor
+4
+
+#3
+2
+Adamantine Medium Helm
+A finely crafted adamant helm covering the face and neck.
+7:-0.02
+2
+2
+
+#4
+1
+Adamantine Brigandine
+Adamantine plates sewn into a fine coat. Preferred by scouts.
+1							$ Light armor
+2
+
+#5
+0							$ Item type == Weapon
+Adamantine Greatsword
+A massive two-handed sword made entirely of adamantine.
+1							$ Two-handed
+1							$ Slashing
+12							$ Damage
+
+#6
+0
+Adamantine Arming Sword
+A one-handed sword of sturdy make, finding a nice balance between length, broadness, and weight. A fine weapon.
+0							$ One-handed
+1							$ Slashing
+8							$ Damage
+
+#7
+3							$ Shield
+Adamantine Tower Shield
+Practically a wall of solid adamant, these shields are often larger than the knight wielding them. Most find maneuvering with them becomes a challenge, though the additional protection is well worth it.
+4:-1,12:6					$ -1 movement, strength requirement of 6
+0.85						$ Blocks 85% of damage
+
+#8
+3
+Adamantine Kite Shield
+A decent sized kite shield, with an embossed adamant face. A bit heavy, but an excellent defensive piece.
+0.65						$ Blocks 65% of damage
+
+#9
+3
+Adamantine Buckler
+A small, solid shield, mostly useful for parrying.
+8:0.08						$ +8% Critical chance
+0.38						$ Blocks 38% of damage
+
+#10
+0							$ Item type == Weapon
+Ylidium Hand-and-a-Half Sword
+A longsword with beautiful engravings along the blade.
+1							$ Two-handed	// Should really make a hand and a half type at some point
+1							$ Slashing
+11							$ Damage
+
+#11
+1							$ Item type == armor
+Ylidium-Steel Plate
+A fine set of armor, composed of several interlocking plates that allow for an impressive range of motion.
+6:1							$ +1 Mental resistance
+3							$ Heavy armor
+3
+
+#12
+2							$ Item type == helm
+Ylidium-Steel Helm
+An impressive plumed greathelm.
+6:1,7:0.05					$ +1 Mental resistance, -5% accuracy
+3
+2

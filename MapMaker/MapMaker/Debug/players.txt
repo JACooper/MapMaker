@@ -1,0 +1,27 @@
+#0					$ Index
+Renault				$ Unit name
+8					$ Level
+0					$ Experience
+9					$ Strength
+5					$ Agility
+5					$ Skill
+1					$ Willpower
+1					$ Helm (-1 for null)	-	Adamant Heavy Helm
+0					$ Armor					-	Adamant Heavy Plate
+5					$ Weapon hand			-	Adamant Greatsword
+-1					$ Offhand (null)
+-1					$ Misc (null)
+
+#1
+Lisa Corynth Vayrinir
+8
+0
+5
+4
+6
+5
+12
+11
+10
+-1
+-1
