@@ -29,7 +29,7 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="Debug\item_database.txt" />
-    <Text Include="Debug\players.txt" />
+    <Text Include="Debug\unit_database.txt" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{EE557749-AA2D-4A39-B89B-95ED7318B6DC}</ProjectGuid>

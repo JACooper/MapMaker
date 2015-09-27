@@ -58,10 +58,10 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="Debug\players.txt">
+    <Text Include="Debug\item_database.txt">
       <Filter>Resource Files</Filter>
     </Text>
-    <Text Include="Debug\item_database.txt">
+    <Text Include="Debug\unit_database.txt">
       <Filter>Resource Files</Filter>
     </Text>
   </ItemGroup>

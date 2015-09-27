@@ -53,6 +53,7 @@ Unit::~Unit(void)
 	delete inventory->offHand;
 	delete inventory->misc;*/
 	delete inventory;
+	delete occSpace;
 }
 
 bool Unit::IsDead()

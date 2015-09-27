@@ -61,7 +61,7 @@ bool ReadItems(string filename)
 
 	itemStream.open(filename, std::ifstream::in);	// When I eventually change this, a binary file is std::ifstream::binary
 
-	if (itemStream == NULL)							// If there was an issue opening the stream, quit
+	if (!itemStream.is_open())						// If there was an issue opening the stream, quit
 		readSuccessfully = false;
 	else
 	{
@@ -229,46 +229,46 @@ bool ReadPlayerUnits(string filename)
 {
 	bool readSuccessfully = true;
 	
-	ifstream itemStream;
+	ifstream unitStream;
 
-	itemStream.open(filename, std::ifstream::in);	// When I eventually change this, a binary file is std::ifstream::binary
+	unitStream.open(filename, std::ifstream::in);	// When I eventually change this, a binary file is std::ifstream::binary
 
-	if (itemStream == NULL)							// If there was an issue opening the stream, quit
+	if (!unitStream.is_open())						// If there was an issue opening the stream, quit
 		readSuccessfully = false;
 	else
 	{
 		Unit* nextPlayer;
 
 		string input;
-		while ( std::getline(itemStream, input) )	// Read entire line	-	I believe this returns NULL at EOF
+		while ( std::getline(unitStream, input) )	// Read entire line	-	I believe this returns NULL at EOF
 		{
 			string parsed;
 
-			std::getline(itemStream, input);		// Read in unit name (The previous getline just discards index, it's useless right now)
+			std::getline(unitStream, input);		// Read in unit name (The previous getline just discards index, it's useless right now)
 			parsed = ParseForComment(input);
 			string unitName = parsed;
 			
-			std::getline(itemStream, input);		// Read in unit level
+			std::getline(unitStream, input);		// Read in unit level
 			parsed = ParseForComment(input);
 			int unitLevel = StringToNumber<int>(parsed);
 			
-			std::getline(itemStream, input);		// Read in unit experience
+			std::getline(unitStream, input);		// Read in unit experience
 			parsed = ParseForComment(input);
 			int unitExp = StringToNumber<int>(parsed);
 			
-			std::getline(itemStream, input);		// Read in unit strength
+			std::getline(unitStream, input);		// Read in unit strength
 			parsed = ParseForComment(input);
 			int unitStr = StringToNumber<int>(parsed);
 			
-			std::getline(itemStream, input);		// Read in unit agility
+			std::getline(unitStream, input);		// Read in unit agility
 			parsed = ParseForComment(input);
 			int unitAgi = StringToNumber<int>(parsed);
 			
-			std::getline(itemStream, input);		// Read in unit skill
+			std::getline(unitStream, input);		// Read in unit skill
 			parsed = ParseForComment(input);
 			int unitSkl = StringToNumber<int>(parsed);
 			
-			std::getline(itemStream, input);		// Read in unit willpower
+			std::getline(unitStream, input);		// Read in unit willpower
 			parsed = ParseForComment(input);
 			int unitWlp = StringToNumber<int>(parsed);
 			
@@ -276,7 +276,7 @@ bool ReadPlayerUnits(string filename)
 			// Create unit
 			nextPlayer = new Unit(unitName, unitLevel, unitExp, unitStr, unitAgi, unitSkl, unitWlp);
 
-			std::getline(itemStream, input);		// Read in helmet equip slot index
+			std::getline(unitStream, input);		// Read in helmet equip slot index
 			parsed = ParseForComment(input);
 			int helmIndex = StringToNumber<int>(parsed);
 			Item* helmet = NULL;
@@ -284,7 +284,7 @@ bool ReadPlayerUnits(string filename)
 				helmet = itemDatabase[helmIndex];
 			nextPlayer->EquipItem(helmet);
 
-			std::getline(itemStream, input);		// Read in armor equip slot index
+			std::getline(unitStream, input);		// Read in armor equip slot index
 			parsed = ParseForComment(input);
 			int amrIndex = StringToNumber<int>(parsed);
 			Item* armor = NULL;
@@ -292,7 +292,7 @@ bool ReadPlayerUnits(string filename)
 				armor = itemDatabase[amrIndex];
 			nextPlayer->EquipItem(armor);
 			
-			std::getline(itemStream, input);		// Read in weapon hand equip slot index
+			std::getline(unitStream, input);		// Read in weapon hand equip slot index
 			parsed = ParseForComment(input);
 			int wpnIndex = StringToNumber<int>(parsed);
 			Item* weapon = NULL;
@@ -300,7 +300,7 @@ bool ReadPlayerUnits(string filename)
 				weapon = itemDatabase[wpnIndex];
 			nextPlayer->EquipItem(weapon);
 			
-			std::getline(itemStream, input);		// Read in offhand equip slot index
+			std::getline(unitStream, input);		// Read in offhand equip slot index
 			parsed = ParseForComment(input);
 			int offIndex = StringToNumber<int>(parsed);
 			Item* offhand = NULL;
@@ -308,7 +308,7 @@ bool ReadPlayerUnits(string filename)
 				offhand = itemDatabase[offIndex];
 			nextPlayer->EquipItem(offhand);
 			
-			std::getline(itemStream, input);		// Read in offhand equip slot index
+			std::getline(unitStream, input);		// Read in offhand equip slot index
 			parsed = ParseForComment(input);
 			int miscIndex = StringToNumber<int>(parsed);
 			Item* misc = NULL;
@@ -318,7 +318,7 @@ bool ReadPlayerUnits(string filename)
 
 			playerParty.push_back(nextPlayer);		// Add player to list
 
-			std::getline(itemStream, input);		// Eat trailing space
+			std::getline(unitStream, input);		// Eat trailing space
 		}// End of While
 	}
 
@@ -340,12 +340,12 @@ void FreeMem()
 		}
 	}
 
-	// Free player list
-	for (i = 0; i < playerParty.size(); ++i)
+	// Free player list		-	Unnecessary, as they are taken care of by the map deletion
+	/*for (i = 0; i < playerParty.size(); ++i)
 	{
 		if (playerParty[i] != NULL)
 			delete playerParty[i];			// Will call Unit destructor
-	}
+	}*/
 	
 	// Free item database
 	for (i = 0; i < itemDatabase.size(); ++i)
@@ -378,7 +378,7 @@ int main(void)
 		cout << "There was an issue initializing the item database." << endl;
 		return 1;	// Don't bother continuing, exit with error code
 	}
-	if (ReadPlayerUnits("Debug\\players.txt") == false)
+	if (ReadPlayerUnits("Debug\\unit_database.txt") == false)
 	{
 		cout << "There was an issue initializing the unit database." << endl;
 		return 1;
@@ -420,7 +420,9 @@ int main(void)
 		cout << endl;
 	}
 
+	FreeMem();
 
+	cout << "\nEnter any key to exit: ";
 	string input;				
 	std::cin >> input;
 	
