@@ -214,6 +214,7 @@ bool ReadItems(string filename)
 
 		}	// End of while
 
+		itemStream.close();
 	}
 
 	return readSuccessfully;
@@ -320,6 +321,8 @@ bool ReadPlayerUnits(string filename)
 
 			std::getline(unitStream, input);		// Eat trailing space
 		}// End of While
+
+		unitStream.close();
 	}
 
 	return readSuccessfully;
