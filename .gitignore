@@ -34,3 +34,7 @@
 # Misc
 *.suo
 *.sdf
+*.tlog
+*.lastbuildstate
+*.idb
+*.log
